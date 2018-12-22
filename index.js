@@ -63,7 +63,7 @@ bot.get('', message => {
   const otherChatId = chats[yourChatId];
   sendDebug('message', message);
   if (otherChatId)
-    sendMessage(message.chat.text, otherChatId);
+    sendMessage(message.text, otherChatId);
   else 
     sendMessage(`Чат еще не начат. Ваше сообщение никто не получил. Отправьте команду /start, чтобы встать в очередь`, yourChatId);
 });
