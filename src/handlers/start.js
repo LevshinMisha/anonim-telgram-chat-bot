@@ -1,4 +1,4 @@
-import { sendMessage, sendMessages, sendDebug } from './api';
+import { sendMessage, sendMessages, sendDebug } from '../api';
 import { clearQuery, addToQuery, getQuery } from './model/query';
 import { openChat } from '../model/chat';
 
