@@ -16,3 +16,8 @@ const setHandler = handler => message => {
 bot.command('start', setHandler(startHandler));
 bot.command('finish', setHandler(finishHandler));
 bot.get('', setHandler(messageHandler));
+
+require('http').createServer((req, res) => {
+  res.write('Hello World!');
+  res.end();
+}).listen(8080); // Для now, чтоб не перезапускалось каждые 5 минут.
