@@ -5,6 +5,8 @@ const bot = new Bot({ token: '413121960:AAE2_z-PLg2uwo_NMfcMwThjGN86QcDKE6E' });
 const chats = {};
 
 let queryChat = null;
+
+const debug = false;
  
 bot.start();
 
@@ -20,14 +22,16 @@ const sendDebugMessage = (text, obj = null) => {
 }
 
 const sendDebug = (route, message) => {
-  const yourChatId = message.chat.id;
-  const otherChatId = chats[yourChatId];
-  sendDebugMessage(route);
-  sendDebugMessage('chats', chats);
-  sendDebugMessage('message', message);
-  sendDebugMessage('query', queryChat);
-  sendDebugMessage('finded chats', { yourChatId, otherChatId });
-}
+  if (debug) {
+    const yourChatId = message.chat.id;
+    const otherChatId = chats[yourChatId];
+    sendDebugMessage(route);
+    sendDebugMessage('chats', chats);
+    sendDebugMessage('message', message);
+    sendDebugMessage('query', queryChat);
+    sendDebugMessage('finded chats', { yourChatId, otherChatId });
+  }
+};
 
 bot.command('start', message => {
   sendDebug('start start', message);
