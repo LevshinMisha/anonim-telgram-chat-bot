@@ -7,12 +7,15 @@ export default (message, chatId, otherChatId) => {
   if (!otherChatId) {
     sendMessage('Начинаем поиск', chatId);
     const queryChat = getQuery();
-    if (queryChat) {
-      sendMessages('Поиск успешно завершен', [queryChat, chatId]);
-      sendMessages('Можете начинать общение', [queryChat, chatId]);
-      openChat(queryChat, chatId);
-      clearQuery();
-    } else
+    if (queryChat && queryChat !== chatId) {
+      if (queryChat !== chatId) {
+        sendMessages('Поиск успешно завершен', [queryChat, chatId]);
+        sendMessages('Можете начинать общение', [queryChat, chatId]);
+        openChat(queryChat, chatId);
+        clearQuery();
+      } else
+        sendMessage('Уже ищу!', chatId);
+    } else 
       addToQuery(chatId);
   } else 
     sendMessage('Для начала закончи текущую беседу', chatId);
