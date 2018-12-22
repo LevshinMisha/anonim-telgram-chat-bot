@@ -12,7 +12,25 @@ const sendMessage = (text, to) => bot.send(new Message().text(text).to(to));
 
 const sendMessages = (text, chats) => chats.forEach(chat => sendMessage(text, chat));
 
+const sendDebugMessage = (text, obj = null) => {
+  const ownerId = 439300584;
+  sendMessage(text, ownerId);
+  if (obj !== null)
+    sendMessage(JSON.stringify(obj), ownerId);
+}
+
+const sendDebug = (route, message) => {
+  const yourChatId = message.chat.id;
+  const otherChatId = chats[yourChatId];
+  sendDebugMessage(route);
+  sendDebugMessage('chats', chats);
+  sendDebugMessage('message', message);
+  sendDebugMessage('query', queryChat);
+  sendDebugMessage('finded chats', { yourChatId, otherChatId });
+}
+
 bot.command('start', message => {
+  sendDebug('start start', message);
   const yourChatId = message.chat.id;
   sendMessage('Начинаем поиск', yourChatId);
   if (queryChat) {
@@ -23,9 +41,11 @@ bot.command('start', message => {
     chats[yourChatId] = queryChat;
   } else
     queryChat = message.chat.id;
+  sendDebug('start end', message);
 });
 
 bot.command('finish', message => {
+  sendDebug('finish start', message);
   const yourChatId = message.chat.id;
   if (chats[yourChatId]) {
     const otherChatId = chats[yourChatId];
@@ -35,11 +55,13 @@ bot.command('finish', message => {
     delete chats[otherChatId];
   } else
     sendMessage('Чтоб прервать чат, его нужно начать', yourChatId);
+  sendDebug('finish end', message);
 })
  
 bot.get('', message => {
   const yourChatId = message.chat.id;
   const otherChatId = chats[yourChatId];
+  sendDebug('message', message);
   if (otherChatId)
     sendMessage(message.chat.text, otherChatId);
   else 
