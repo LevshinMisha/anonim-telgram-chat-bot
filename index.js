@@ -4,7 +4,7 @@ const bot = new Bot({ token: '413121960:AAE2_z-PLg2uwo_NMfcMwThjGN86QcDKE6E' });
 
 const chats = {};
 
-const queryChat = null;
+let queryChat = null;
  
 bot.start();
 
