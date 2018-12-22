@@ -1,4 +1,4 @@
-import { sendMessage, sendDebug } from './api';
+import { sendMessage, sendDebug } from '../api';
 
 export default (message, chatId, otherChatId, text) => {
   sendDebug('message', message);

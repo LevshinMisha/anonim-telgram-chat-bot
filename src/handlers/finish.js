@@ -1,5 +1,5 @@
-import { sendMessage, sendDebug } from './api';
-import { closeChat } from './model/chat';
+import { sendMessage, sendDebug } from '../api';
+import { closeChat } from '../model/chat';
 
 export default (message, chatId, otherChatId) => {
   sendDebug('finish start', message);

@@ -1,5 +1,5 @@
-import { sendMessage, sendMessages, sendDebug } from './api';
-import { clearQuery, addToQuery, getQuery } from './model/query';
+import { sendMessage, sendMessages, sendDebug } from '../api';
+import { clearQuery, addToQuery, getQuery } from '../model/query';
 import { openChat } from '../model/chat';
 
 export default (message, chatId) => {
