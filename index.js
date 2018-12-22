@@ -36,9 +36,9 @@ bot.command('start', message => {
   if (queryChat) {
     sendMessages('Поиск успешно завершен', [queryChat, yourChatId]);
     sendMessages('Можете начинать общение', [queryChat, yourChatId]);
-    queryChat = null;
     chats[queryChat] = yourChatId;
     chats[yourChatId] = queryChat;
+    queryChat = null;
   } else
     queryChat = message.chat.id;
   sendDebug('start end', message);
