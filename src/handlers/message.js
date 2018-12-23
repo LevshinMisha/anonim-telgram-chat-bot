@@ -1,4 +1,4 @@
-import { sendMessage, sendDebug } from '../api';
+import { sendMessage } from '../telegram';
 
 export default (message, chatId, otherChatId, text) => {
   if (otherChatId)

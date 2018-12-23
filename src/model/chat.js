@@ -13,3 +13,5 @@ export const closeChat = user => {
   delete chat[chat[user]];
   delete chat[user];
 }
+
+export const getChats = () => chats;
