@@ -8,8 +8,8 @@ const setHandler = handler => message => {
 };
 
 export default class Bot {
-  constructor(token) {
-    this.bot = initApi(token);
+  constructor(api) {
+    this.bot = api;
   }
 
   onCommand(command, handler) {
