@@ -1,5 +1,8 @@
+import fetch from 'node-fetch';
+import http from 'http';
+
 export default () => {
-  require('http').createServer((req, res) => {
+  http.createServer((req, res) => {
     res.write(req.url === '/ping' ? 'pong' : 'Hello World!');
     res.end();
   }).listen(8080);
