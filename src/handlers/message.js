@@ -1,8 +1,13 @@
 import { sendMessage } from '../telegram';
 
+const noChatMessage = [
+  'Чат еще не начат.',
+  'Если вы не знаете что делать, воспользуйтесь командой /help'
+].join('\n')
+
 export default (message, chatId, otherChatId, text) => {
   if (otherChatId)
     sendMessage(text, otherChatId);
   else 
-    sendMessage(`Чат еще не начат.\nВаше сообщение никто не получил.\nОтправьте команду /start, чтобы встать в очередь.`, chatId);
+    sendMessage(noChatMessage, chatId);
 }
