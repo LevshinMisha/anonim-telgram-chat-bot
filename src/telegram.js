@@ -1,4 +1,4 @@
-import Bot, { Message, File } from 'telegram-api';
+import Bot, { Message, Question } from 'telegram-api';
 
 let bot = null;
 
@@ -25,3 +25,14 @@ export const sendDebug = (chatId, otherChatId, chats, query) => {
   sendDebugMessage('query', chatId, query);
   sendDebugMessage('current chat', chatId, { chatId, otherChatId });
 };
+
+const mainQuestion = new Question({
+  text: 'Жду вашей команды!', 
+  answers: [['Hey'], ['Hello, Sir'], ['Yo bro']]
+})
+
+export const sendQuestion = (question, chatId) => {
+  bot.send(mainQuestion.to(chatId)).then(answer => {
+    sendMessage('Your answer: ' + answer.text, chatId);
+  });
+}
