@@ -4,6 +4,6 @@ export default () => {
     res.end();
   }).listen(8080);
   
-  setInterval(() => fetch('tave-anonim-chat-telegram-bot.now.sh'), 5 * 60 * 1000);
+  setInterval(() => fetch('https://tave-anonim-chat-telegram-bot.now.sh/ping'), 5 * 60 * 1000);
 }
 
