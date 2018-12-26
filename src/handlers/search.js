@@ -1,4 +1,4 @@
-import { sendMessage, sendMessages } from '../telegram';
+import { sendMessage } from '../telegram';
 import { clearQuery, addToQuery, getQuery } from '../model/query';
 import { openChat } from '../model/chat';
 import { noCurrentChat } from './utils';
