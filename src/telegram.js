@@ -1,4 +1,5 @@
 import Bot, { Message } from 'telegram-api';
+import { getUsernamePlaceholder } from './utils';
 
 let bot = null;
 
@@ -10,20 +11,7 @@ export default token => {
   return bot;
 };
 
-const usernamePlaceholders = [
-  'Неопознанный енот',
-  'Неопознанная уточка',
-  'Неопознанная черепаха',
-  'Неопознанный лось',
-  'Неопознанный удав',
-  'Неопознанная тыква',
-  'Неопознанная лягушка',
-  'Неопознанный шакал',
-  'Неопознанный чупакабра',
-  'Неопознанный шакал'
-];
-
-const wrapUserText = (text, from) => `${usernamePlaceholders[from % usernamePlaceholders.length]}: "${text}"`;
+const wrapUserText = (text, from) => `${getUsernamePlaceholder(from)}: "${text}"`;
 
 export const sendMessage = (text, to, from = null) => {
   bot.send(new Message().text(from ? wrapUserText(text, from) : text).to(to));
@@ -43,5 +31,6 @@ export const sendDebug = (chatId, otherChatId, chats, query) => {
   sendDebugMessage('chats', chatId, chats);
   sendDebugMessage('query', chatId, query);
   sendDebugMessage('current chat', chatId, { chatId, otherChatId });
+  sendDebugMessage('qctf', chatId, { flag: "ТЫ ДУМАЕШЬ, ЧТО ВСЕ ТАК ПРОСТО?"})
 };
 
