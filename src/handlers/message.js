@@ -11,11 +11,14 @@ const noTextMessage = [
 ].join('\n');
 
 export default (message, chatId, otherChatId, text) => {
+  console.info(text);
   if (otherChatId)
     if (text)
       sendMessage(text, otherChatId, chatId);
-    else
+    else {
+      console.info(noTextMessage);
       sendMessage(noTextMessage, chatId);
+    }
   else 
     sendMessage(noChatMessage, chatId);
 }
