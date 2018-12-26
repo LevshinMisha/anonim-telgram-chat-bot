@@ -29,6 +29,5 @@ export const sendDebug = (chatId, otherChatId, chats, query) => {
   sendDebugMessage('chats', chatId, chats);
   sendDebugMessage('query', chatId, query);
   sendDebugMessage('current chat', chatId, { chatId, otherChatId });
-  sendDebugMessage('qctf', chatId, { flag: "ТЫ ДУМАЕШЬ, ЧТО ВСЕ ТАК ПРОСТО?" });
 };
 

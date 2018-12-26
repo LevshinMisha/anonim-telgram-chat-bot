@@ -10,6 +10,7 @@ const setHandler = handler => message => {
 export default class Bot {
   constructor(api) {
     this.bot = api;
+    this.bot.on('message', obj => console.info(obj));
   }
 
   onCommand(command, handler) {
