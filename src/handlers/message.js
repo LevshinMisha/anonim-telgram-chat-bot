@@ -7,7 +7,7 @@ const noChatMessage = [
 
 export default (message, chatId, otherChatId, text) => {
   if (otherChatId)
-    sendMessage(text, otherChatId);
+    sendMessage(text, otherChatId, chatId);
   else 
     sendMessage(noChatMessage, chatId);
 }

@@ -10,9 +10,28 @@ export default token => {
   return bot;
 };
 
-export const sendMessage = (text, to) => bot.send(new Message().text(text).to(to));
+const usernamePlaceholders = [
+  'Неопознанный енот',
+  'Неопознанная уточка',
+  'Неопознанная черепаха',
+  'Неопознанный лось',
+  'Неопознанный удав',
+  'Неопознанная тыква',
+  'Неопознанная лягушка',
+  'Неопознанный шакал',
+  'Неопознанный чупакабра',
+  'Неопознанный шакал'
+];
 
-export const sendMessages = (text, chats) => chats.forEach(chat => sendMessage(text, chat));
+const wrapUserText = (text, from) => `${usernamePlaceholders[from % usernamePlaceholders.length]}: "${text}"`;
+
+export const sendMessage = (text, to, from = null) => {
+  bot.send(new Message().text(from ? wrapUserText(text, from) : text).to(to));
+};
+
+export const sendMessages = (text, chats, from = null) => {
+  chats.forEach(chat => sendMessage(text, chat, from));
+}
 
 const sendDebugMessage = (text, chatId, obj = null) => {
   sendMessage(text, chatId);
