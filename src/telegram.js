@@ -22,15 +22,13 @@ export const sendMessages = (text, chats, from = null) => {
 }
 
 const sendDebugMessage = (text, chatId, obj = null) => {
-  sendMessage(text, chatId);
-  if (obj !== null)
-    sendMessage(JSON.stringify(obj), chatId);
+  sendMessage(`${text} ${obj ? JSON.stringify(obj) : 'null'}`, chatId);
 }
   
 export const sendDebug = (chatId, otherChatId, chats, query) => {
   sendDebugMessage('chats', chatId, chats);
   sendDebugMessage('query', chatId, query);
   sendDebugMessage('current chat', chatId, { chatId, otherChatId });
-  sendDebugMessage('qctf', chatId, { flag: "ТЫ ДУМАЕШЬ, ЧТО ВСЕ ТАК ПРОСТО?"})
+  sendDebugMessage('qctf', chatId, { flag: "ТЫ ДУМАЕШЬ, ЧТО ВСЕ ТАК ПРОСТО?" });
 };
 
