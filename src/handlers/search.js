@@ -11,15 +11,22 @@ const sendSearchFinishMessage = (from, to) => sendMessage([
 
 export default noCurrentChat((message, chatId) => {
   sendMessage('Начинаем поиск.', chatId);
+  console.info(`${chatId} start search`);
   const queryChat = getQuery();
   if (queryChat) {
     if (queryChat !== chatId) {
+      console.info(`${chatId} and ${queryChat} connected`);
       openChat(queryChat, chatId);
       clearQuery();
       sendSearchFinishMessage(queryChat, chatId);
       sendSearchFinishMessage(chatId, queryChat);
-    } else
+    } else {
+      console.info(`${chatId} already in query`);
       sendMessage('Уже ищу!', chatId);
-  } else
+    }
+  } else {
+    console.info(`${chatId} add to query`);
     addToQuery(chatId);
+  }
+    
 })

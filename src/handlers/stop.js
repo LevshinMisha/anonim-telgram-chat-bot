@@ -4,6 +4,7 @@ import { noCurrentChat } from './utils';
 
 export default noCurrentChat((message, chatId) => {
   if (queryContains(chatId)) {
+    console.info(`${chatId} stop search`);
     clearQuery();
     sendMessage('Поиск остановлен.', chatId);
   } else
