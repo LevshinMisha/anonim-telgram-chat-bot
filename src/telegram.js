@@ -1,4 +1,4 @@
-import Bot, { Message, Question, Keyboard } from 'telegram-api';
+import Bot, { Message } from 'telegram-api';
 
 let bot = null;
 
@@ -25,20 +25,4 @@ export const sendDebug = (chatId, otherChatId, chats, query) => {
   sendDebugMessage('query', chatId, query);
   sendDebugMessage('current chat', chatId, { chatId, otherChatId });
 };
-
-const mainQuestion = new Question({
-  text: 'Жду вашей команды!', 
-  answers: [['Встать в очередь']]
-});
-
-const hideKeyboard = chatId => {
-  bot.send(new Message().keyboard(new Keyboard().force(true).oneTime(true).hide(true)).to(chatId));
-}
-
-export const sendQuestion = (question, chatId) => {
-  hideKeyboard(chatId);
-  bot.send(mainQuestion.to(chatId)).then(answer => {
-    sendMessage('Your answer: ' + answer.text, chatId);
-  });
-}
 
