@@ -31,10 +31,12 @@ const mainQuestion = new Question({
   answers: [['Встать в очередь']]
 });
 
-export const hideKeyboard = () => bot.send(new Keyboard().force(true).oneTime(true).hide());
+export const hideKeyboard = chatId => { 
+  bot.send(new Keyboard().force(true).oneTime(true).hide(true).to(chatId));
+};
 
 export const sendQuestion = (question, chatId) => {
-  hideKeyboard();
+  hideKeyboard(chatId);
   bot.send(mainQuestion.to(chatId)).then(answer => {
     sendMessage('Your answer: ' + answer.text, chatId);
   });
