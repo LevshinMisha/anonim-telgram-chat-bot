@@ -8,4 +8,4 @@ export default (message, chatId, otherChatId) => {
     closeChat(chatId)
   } else
     sendMessage('Чтоб прервать чат, его нужно начать.\nИспользуйте /start для начала поиска.', chatId);
-}
+};

@@ -14,4 +14,4 @@ export const closeChat = user => {
   delete chat[user];
 }
 
-export const getChats = () => chats;
+export const getChats = () => chat;
