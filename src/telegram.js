@@ -29,9 +29,14 @@ export const sendDebug = (chatId, otherChatId, chats, query) => {
 const mainQuestion = new Question({
   text: 'Жду вашей команды!', 
   answers: [['Встать в очередь']]
-}).keyboard(new Keyboard().force(true).oneTime(true).hide(true));
+});
+
+const hideKeyboard = chatId => {
+  bot.send(new Message().keyboard(new Keyboard().force(true).oneTime(true).hide(true)).to(chatId));
+}
 
 export const sendQuestion = (question, chatId) => {
+  hideKeyboard(chatId);
   bot.send(mainQuestion.to(chatId)).then(answer => {
     sendMessage('Your answer: ' + answer.text, chatId);
   });
