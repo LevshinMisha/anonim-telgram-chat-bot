@@ -1,23 +1,20 @@
 import initApi from './telegram';
-import { getOtherUser } from './model/chat';
 
-const setHandler = handler => message => {
-  const chatId = message.chat.id;
-  const otherChatId = getOtherUser(chatId);
-  const { text } = message;
-  return handler(message, chatId, otherChatId, text);
+import Bot from './model/bot';
+
+import messageHandler from './handlers/message';
+import searchHandler from './handlers/search';
+import finishHandler from './handlers/finish';
+import debugHandler from './handlers/debug';
+import stopHandler from './handlers/stop';
+import helpHandler from './handlers/help';
+
+export default () => {
+  const bot = new Bot(initApi('413121960:AAE2_z-PLg2uwo_NMfcMwThjGN86QcDKE6E'));
+  bot.onCommand('search', searchHandler);
+  bot.onCommand('stop', stopHandler);
+  bot.onCommand('finish', finishHandler);
+  bot.onCommand('debug', debugHandler);
+  bot.onCommand('help', helpHandler);
+  bot.onMessage('', messageHandler);
 };
-
-export default class Bot {
-  constructor(token) {
-    this.bot = initApi(token);
-  }
-
-  onCommand(command, handler) {
-    this.bot.command(command, setHandler(handler));
-  }
-
-  onMessage(pattern, handler) {
-    this.bot.get(pattern, setHandler(handler));
-  }
-}
