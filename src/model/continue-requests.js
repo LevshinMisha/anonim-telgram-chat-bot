@@ -17,3 +17,7 @@ export const findRequest = (user, other) => {
 export const hasRequest = (user, other) => {
   return !!requests.find(requestFind(user, other));
 }
+
+export const deleteRequests = (users) => {
+  requests = requests.filter(i => !users.includes(i.from) && !users.includes(i.to));
+}

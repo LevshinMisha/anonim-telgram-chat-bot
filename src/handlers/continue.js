@@ -1,5 +1,5 @@
 import { sendMessage } from '../telegram';
-import { addRequest, findRequest, hasRequest } from '../model/continue-requests';
+import { addRequest, findRequest, hasRequest, deleteRequests } from '../model/continue-requests';
 import { closeChat } from '../model/chat';
 
 const continueRequestMessage = [
@@ -28,6 +28,7 @@ export default (message, chatId, otherChatId) => {
     }
     if (hasRequest(otherChatId, chatId)) {
       closeChat(chatId);
+      deleteRequests([chatId, otherChatId]);
       sendMessage(continueMessage(findRequest(chatId, otherChatId).username), otherChatId);
       sendMessage(continueMessage(findRequest(otherChatId, chatId).username), chatId);
     }
