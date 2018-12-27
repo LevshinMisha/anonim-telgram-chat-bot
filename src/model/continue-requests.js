@@ -11,6 +11,7 @@ export const addRequest = (user, other, username) => {
 const requestFind = (user, other) => i => i.from === user && i.to === other;
 
 export const findRequest = (user, other) => {
+  console.info('123', requests);
   return requests.find(requestFind(user, other));
 }
 
