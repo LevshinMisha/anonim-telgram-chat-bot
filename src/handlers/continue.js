@@ -29,8 +29,11 @@ export default (message, chatId, otherChatId) => {
     if (hasRequest(otherChatId, chatId)) {
       closeChat(chatId);
       deleteRequests([chatId, otherChatId]);
-      sendMessage(continueMessage(findRequest(chatId, otherChatId).username), otherChatId);
-      sendMessage(continueMessage(findRequest(otherChatId, chatId).username), chatId);
+      const q = findRequest(chatId, otherChatId);
+      const w = findRequest(otherChatId, chatId);
+      console.info(q, w);
+      sendMessage(continueMessage(q.username), otherChatId);
+      sendMessage(continueMessage(w.username), chatId);
     }
   } else
     sendMessage('Чтоб продолжить чат, его нужно начать.', chatId);
