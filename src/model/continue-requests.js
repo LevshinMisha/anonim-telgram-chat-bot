@@ -1,4 +1,4 @@
-const requests = [];
+let requests = [];
 
 export const addRequest = (user, other, username) => {
   requests.push({
