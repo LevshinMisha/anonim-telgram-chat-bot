@@ -28,10 +28,10 @@ export default (message, chatId, otherChatId) => {
     }
     if (hasRequest(otherChatId, chatId)) {
       closeChat(chatId);
-      deleteRequests([chatId, otherChatId]);
       const q = findRequest(chatId, otherChatId);
       const w = findRequest(otherChatId, chatId);
       console.info(q, w);
+      deleteRequests([chatId, otherChatId]);
       sendMessage(continueMessage(q.username), otherChatId);
       sendMessage(continueMessage(w.username), chatId);
     }
