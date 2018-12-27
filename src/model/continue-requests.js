@@ -8,7 +8,7 @@ export const addRequest = (user, other, userInfo) => {
   });
 }
 
-const requestsFilter = (u1, u2) = i => {
+const requestsFilter = (u1, u2) => i => {
   return (i.from === u1 && i.to === u2) || (i.from === u2 && i.to === u1);
 }
 
