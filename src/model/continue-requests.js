@@ -1,17 +1,19 @@
 const requests = [];
 
-export const addRequest = (user, other, userInfo) => {
+export const addRequest = (user, other, username) => {
   requests.push({
     from: user,
     to: other,
-    userInfo
+    username
   });
 }
 
-const requestsFilter = (u1, u2) => i => {
-  return (i.from === u1 && i.to === u2) || (i.from === u2 && i.to === u1);
+const requestFind = (user, other) => i => i.from === user && i.to === other;
+
+export const findRequest = (user, other) => {
+  return requests.find(requestFind(user, other));
 }
 
 export const hasRequest = (user, other) => {
-  return requests.filter(requestsFilter(user, other)).length;
+  return !!requests.find(requestFind(user, other));
 }
