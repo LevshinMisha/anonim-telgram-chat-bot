@@ -1,5 +1,5 @@
 import { sendMessage } from '../telegram';
-import { addRequest, findRequest } from '../model/continue-requests';
+import { addRequest, findRequest, hasRequest } from '../model/continue-requests';
 import { closeChat } from '../model/chat';
 
 const continueRequestMessage = [
